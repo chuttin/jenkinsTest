@@ -26,7 +26,9 @@ pipeline {
         stage('docker push') {
             steps {
                 input message: 'push to dockerHub?'
-                docker.build("jenkins_demo:${env.BUILD_ID}").push("chuttin/jenkins_demo:${env.BUILD_ID}")
+                script {
+                    docker.build("jenkins_demo:${env.BUILD_ID}").push("chuttin/jenkins_demo:${env.BUILD_ID}")
+                }
             }
         }
     }
