@@ -14,6 +14,11 @@ pipeline {
             environment {
                 env2 = 'stage env'
             }
+            steps {
+                sh 'echo env.env1'
+                sh 'echo env.env2'
+                sh 'printenv'
+            }
         }
         stage('get env') {
             steps {
