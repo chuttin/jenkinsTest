@@ -24,10 +24,11 @@ pipeline {
             }
         }
         stage('docker push') {
+            input {
+                message: "push to dockerHub?"
+            }
             steps {
-                input "push to dockerHub?"
-                def customImage = docker.build("jenkinsDemo:${env.BUILD_ID}")
-                customImage.push()
+                docker.build("jenkins_demo:${env.BUILD_ID}").push()
             }
         }
     }
