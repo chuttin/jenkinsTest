@@ -11,6 +11,7 @@ pipeline {
         //         script: 'exit'
         //     )}"""
         github_token = credentials('githubtoken')
+        user_password = credentials('c2b08cbf-bbb3-49fa-a753-c14913af9648')
     }
 
     stages {
@@ -24,8 +25,8 @@ pipeline {
                 env2 = 'stage env'
             }
             steps {
-                // echo "${env.env1}"
                 sh 'printenv'
+                echo "++++++${user_password_USR}+++++${user_password_PSW}++++"
             }
         }
     }
