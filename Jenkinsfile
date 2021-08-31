@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        docker { image 'node:12-alpine' }
+    }
 
     stages {
         stage('pull code') {
@@ -21,6 +23,8 @@ pipeline {
             steps {
                 input message: 'push to dockerHub?'
                 script {
+                    def dockerHome = tool 'docker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
                     docker.build("jenkins_demo:${env.BUILD_ID}").push("chuttin/jenkins_demo:${env.BUILD_ID}")
                 }
             }
