@@ -2,6 +2,14 @@ pipeline {
     agent any
     environment {
         env1 = 'pipeline env'
+        CC = """${sh(
+                returnStdout: true,
+                script: 'echo "clang"'
+            )}""" 
+        EXIT_STATUS = """${sh(
+                returnStatus: true,
+                script: 'exit 1'
+            )}"""
     }
 
     stages {
@@ -15,15 +23,7 @@ pipeline {
                 env2 = 'stage env'
             }
             steps {
-                sh 'echo env.env1'
-                sh 'echo env.env2'
-                sh 'printenv'
-            }
-        }
-        stage('get env') {
-            steps {
-                sh 'echo env.env1'
-                sh 'echo env.env2'
+                echo "${env.env1}"
                 sh 'printenv'
             }
         }
