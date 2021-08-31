@@ -34,7 +34,7 @@ pipeline {
         // }
         stage('get params') {
             steps {
-                echo "++++++${params.Greeting}+++++"
+                echo "++++++${Greeting}+++++"
                 sh 'printenv'
             }
         }
