@@ -20,6 +20,7 @@ pipeline {
             }
         }
         stage('docker push') {
+            agent any
             steps {
                 input message: 'push to dockerHub?'
                 script {
