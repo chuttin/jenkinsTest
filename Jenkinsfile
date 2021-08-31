@@ -1,15 +1,16 @@
 pipeline {
     agent any
     environment {
-        env1 = 'pipeline env'
-        CC = """${sh(
-                returnStdout: true,
-                script: 'echo "clang"'
-            )}""" 
-        EXIT_STATUS = """${sh(
-                returnStatus: true,
-                script: 'exit'
-            )}"""
+        // env1 = 'pipeline env'
+        // CC = """${sh(
+        //         returnStdout: true,
+        //         script: 'echo "clang"'
+        //     )}""" 
+        // EXIT_STATUS = """${sh(
+        //         returnStatus: true,
+        //         script: 'exit'
+        //     )}"""
+        github_token = credentials('githubtoken')
     }
 
     stages {
@@ -23,7 +24,7 @@ pipeline {
                 env2 = 'stage env'
             }
             steps {
-                echo "${env.env1}"
+                // echo "${env.env1}"
                 sh 'printenv'
             }
         }
