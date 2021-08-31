@@ -8,8 +8,7 @@
     "jest": "^27.1.0"
   },
   "scripts": {
-    "test": "jest",
-    "test:report": "jest --reporters='jest-html-reporter'"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
