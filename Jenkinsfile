@@ -24,11 +24,9 @@ pipeline {
             }
         }
         stage('docker push') {
-            input {
-                message: "push to dockerHub?"
-            }
+            input (message: "push to dockerHub?")
             steps {
-                docker.build("jenkins_demo:${env.BUILD_ID}").push()
+                docker.build("jenkins_demo:${env.BUILD_ID}").push('latest')
             }
         }
     }
