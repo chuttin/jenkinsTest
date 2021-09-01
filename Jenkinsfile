@@ -30,7 +30,7 @@ pipeline {
                 input message: 'push to dockerHub?'
                 script {
                     docker.withRegistry('https://index.docker.io/v2/', "docker-hub") {
-                        docker.build("jenkins_demo").push("${env.BUILD_ID}")
+                        docker.build("chuttin/jenkins_demo:${env.BUILD_ID}").push()
                     }
                 }
             }
