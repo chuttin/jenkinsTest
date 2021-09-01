@@ -29,7 +29,7 @@ pipeline {
             steps {
                 input message: 'push to dockerHub?'
                 script {
-                    docker.withRegistry('https://index.docker.io/v2/', "docker-hub") {
+                    docker.withRegistry('https://registry-1.docker.io/v2/', 'docker-hub') {
                         docker.build("chuttin/jenkins_demo:${env.BUILD_ID}").push()
                     }
                 }
