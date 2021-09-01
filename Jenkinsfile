@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent none
 
     stages {
         stage('pull code') {
@@ -29,7 +29,9 @@ pipeline {
             steps {
                 input message: 'push to dockerHub?'
                 script {
-                    docker.build("jenkins_demo:${env.BUILD_ID}").push("chuttin/jenkins_demo:${env.BUILD_ID}")
+                    docker.withRegistry('https://registry.hub.docker.com', 'dockerHub') {
+                        docker.build("jenkins_demo:${env.BUILD_ID}").push("chuttin/jenkins_demo:${env.BUILD_ID}")
+                    }
                 }
             }
         }
