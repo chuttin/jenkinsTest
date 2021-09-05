@@ -2,5 +2,5 @@ const { test, expect } = require('@jest/globals')
 const sum = require('./sum')
 
 test('expect 1 plus 2 equals 3', () => {
-  expect(sum(2, 3)).toBe(5)
+  expect(sum(2, 1)).toBe(3)
 })
