@@ -5,7 +5,7 @@ pipeline {
         stage('pull code') {
             agent any
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: '1903b0e9-1b40-46c8-8579-147f15703c21', url: 'https://github.com/chuttin/jenkinsTest.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'https://github.com/chuttin/jenkinsTest.git']]])
             }
         }
         stage('build') {
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 input message: 'push to dockerHub?'
                 script {
-                    docker.withRegistry('https://registry-1.docker.io/v2/', 'docker-hub') {
+                    docker.withRegistry('https://registry-1.docker.io/v2/', 'docker') {
                         docker.build("chuttin/jenkins_demo:${env.BUILD_ID}").push()
                     }
                 }
