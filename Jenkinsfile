@@ -13,7 +13,7 @@ pipeline {
                 docker { image 'node:12-alpine' }
             }
             steps {
-                sh 'npm install'
+                sh 'yarn install'
             }
         }
         stage('test') {
@@ -21,7 +21,8 @@ pipeline {
                 docker { image 'node:12-alpine' }
             }
             steps {
-                sh 'npm run test'
+                sh 'yarn test'
+                sh 'yarn build'
             }
         }
         stage('docker push') {
